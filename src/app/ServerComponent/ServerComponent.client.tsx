@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 
 export default function ServerComponentClient({
   fn,
+  makeCounter,
 }: {
   fn: (args: { value: string }) => Promise<() => Promise<string>>;
+  makeCounter: () => Promise<React.ReactNode>;
 }) {
   const [data, setData] = useState("");
+  const [counter, setCounter] = useState<React.ReactNode>();
 
   useEffect(() => {
     (async () => {
@@ -16,5 +19,18 @@ export default function ServerComponentClient({
     })();
   }, [fn]);
 
-  return <div>{data}</div>;
+  return (
+    <div>
+      <div>{data}</div>
+      <button
+        onClick={async () => {
+          const counter = await makeCounter();
+          setCounter(counter);
+        }}
+      >
+        Download Counter From Server
+      </button>
+      {counter}
+    </div>
+  );
 }
