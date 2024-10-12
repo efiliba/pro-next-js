@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 
 export default function ServerComponentClient({
   fn,
@@ -11,6 +11,8 @@ export default function ServerComponentClient({
 }) {
   const [data, setData] = useState("");
   const [counter, setCounter] = useState<React.ReactNode>();
+
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     (async () => {
@@ -24,13 +26,19 @@ export default function ServerComponentClient({
       <div>{data}</div>
       <button
         onClick={async () => {
-          const counter = await makeCounter();
-          setCounter(counter);
+          startTransition(async () => {
+            const counter = await makeCounter();
+            setCounter(counter);
+          });
         }}
+        disabled={isPending}
       >
         Download Counter From Server
       </button>
-      {counter}
+      <div>
+        {isPending && "Downloading Counter ..."}
+        {counter}
+      </div>
     </div>
   );
 }

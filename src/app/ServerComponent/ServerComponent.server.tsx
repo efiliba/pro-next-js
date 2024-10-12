@@ -15,6 +15,9 @@ export default function ServerComponentServer() {
 
   async function makeCounter() {
     "use server";
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     return <Counter />;
   }
 
