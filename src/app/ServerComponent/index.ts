@@ -1,1 +1,1 @@
-export { default } from "./ServerComponent.server";
+export { default } from "./ServerComponent.client";

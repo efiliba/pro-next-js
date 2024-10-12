@@ -2,13 +2,9 @@
 
 import { useEffect, useState, useTransition } from "react";
 
-export default function ServerComponentClient({
-  fn,
-  makeCounter,
-}: {
-  fn: (args: { value: string }) => Promise<() => Promise<string>>;
-  makeCounter: () => Promise<React.ReactNode>;
-}) {
+import { fn, makeCounter } from "./ServerComponent.actions";
+
+export default function ServerComponentClient() {
   const [data, setData] = useState("");
   const [counter, setCounter] = useState<React.ReactNode>();
 
@@ -19,7 +15,7 @@ export default function ServerComponentClient({
       const f = await fn({ value: "client value" });
       setData(await f());
     })();
-  }, [fn]);
+  }, []);
 
   return (
     <div>
@@ -27,8 +23,7 @@ export default function ServerComponentClient({
       <button
         onClick={async () => {
           startTransition(async () => {
-            const counter = await makeCounter();
-            setCounter(counter);
+            setCounter(await makeCounter());
           });
         }}
         disabled={isPending}
