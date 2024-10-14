@@ -1,6 +1,6 @@
 "use server";
 
-import Counter from "@/app/Counter";
+import { Counter } from "@/components";
 
 export async function fn({ value }: { value: string }) {
   return async () => {

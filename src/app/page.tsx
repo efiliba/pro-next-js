@@ -1,4 +1,4 @@
-import Counter from "@/app/Counter";
+import { Counter } from "@/components";
 
 import PokemonList from "./PokemonList";
 import ServerComponent from "./ServerComponent";

@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useTransition } from "react";
 
+import { Button } from "@/components";
+
 import { fn, makeCounter } from "./ServerComponent.actions";
 
 export default function ServerComponentClient() {
@@ -20,7 +22,7 @@ export default function ServerComponentClient() {
   return (
     <div>
       <div>{data}</div>
-      <button
+      <Button
         onClick={async () => {
           startTransition(async () => {
             setCounter(await makeCounter());
@@ -29,7 +31,7 @@ export default function ServerComponentClient() {
         disabled={isPending}
       >
         Download Counter From Server
-      </button>
+      </Button>
       <div>
         {isPending && "Downloading Counter ..."}
         {counter}
