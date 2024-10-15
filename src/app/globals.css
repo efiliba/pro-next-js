@@ -76,3 +76,12 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .animate-on-scroll {
+    @apply animate-appear m-10 h-20 w-20;
+    animation-timeline: view();
+    animation-range: entry 0 cover 40%;
+    background-color: theme("colors.foreground");
+  }
+}
