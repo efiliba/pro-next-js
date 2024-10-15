@@ -4,24 +4,24 @@ import { useEffect, useState, useTransition } from "react";
 
 import { Button } from "@/components";
 
-import { fn, makeCounter } from "./ServerComponent.actions";
+import { add, makeCounter } from "./ServerComponent.actions";
 
-export default function ServerComponentClient() {
-  const [data, setData] = useState("");
+export function ServerComponentClient() {
+  const [sum, setSum] = useState(0);
   const [counter, setCounter] = useState<React.ReactNode>();
 
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     (async () => {
-      const f = await fn({ value: "client value" });
-      setData(await f());
+      const total = await add({ a: 5, b: 7 });
+      setSum(await total());
     })();
   }, []);
 
   return (
     <div>
-      <div>{data}</div>
+      <div>{sum}</div>
       <Button
         onClick={async () => {
           startTransition(async () => {

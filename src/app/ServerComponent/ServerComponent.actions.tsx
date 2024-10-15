@@ -2,11 +2,11 @@
 
 import { Counter } from "@/components";
 
-export async function fn({ value }: { value: string }) {
+export async function add({ a, b }: { a: number; b: number }) {
   return async () => {
     "use server";
 
-    return `Server function: '${value}'`;
+    return a + b;
   };
 }
 
