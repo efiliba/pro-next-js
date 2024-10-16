@@ -1,6 +1,6 @@
 "use server";
 
-import { Counter } from "@/components";
+import { AnimateOnScroll } from "@/components";
 
 export async function add({ a, b }: { a: number; b: number }) {
   return async () => {
@@ -10,8 +10,8 @@ export async function add({ a, b }: { a: number; b: number }) {
   };
 }
 
-export async function makeCounter() {
+export async function makeComponent() {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  return <Counter />;
+  return <AnimateOnScroll />;
 }

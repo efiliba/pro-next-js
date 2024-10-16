@@ -4,7 +4,7 @@ import { useEffect, useState, useTransition } from "react";
 
 import { Button } from "@/components";
 
-import { add, makeCounter } from "./ServerComponent.actions";
+import { add, makeComponent } from "./ServerComponent.actions";
 
 export function ServerComponentClient() {
   const [sum, setSum] = useState(0);
@@ -25,15 +25,15 @@ export function ServerComponentClient() {
       <Button
         onClick={async () => {
           startTransition(async () => {
-            setCounter(await makeCounter());
+            setCounter(await makeComponent());
           });
         }}
         disabled={isPending}
       >
-        Download Counter From Server
+        Download Component From Server
       </Button>
       <div>
-        {isPending && "Downloading Counter ..."}
+        {isPending && "Downloading Component ..."}
         {counter}
       </div>
     </div>
