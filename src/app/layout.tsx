@@ -1,4 +1,10 @@
+import { LogInOut } from "@/components";
 import type { Metadata } from "next";
+
+import { SessionProvider } from "./components/SessionProvider";
+
+import "next-auth/react";
+
 import localFont from "next/font/local";
 
 import "./globals.css";
@@ -26,12 +32,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
-      >
-        {children}
-      </body>
-    </html>
+    <SessionProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+        >
+          <LogInOut />
+          {children}
+        </body>
+      </html>
+    </SessionProvider>
   );
 }
