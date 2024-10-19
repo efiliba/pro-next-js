@@ -3,7 +3,6 @@
 import { useEffect, useState, useTransition } from "react";
 
 import { Button } from "@/components";
-
 import { add, makeComponent } from "./ServerComponent.actions";
 
 export function ServerComponentClient() {

@@ -1,11 +1,9 @@
-import { LogInOut } from "@/components";
 import type { Metadata } from "next";
-
-import { SessionProvider } from "./components/SessionProvider";
-
-import "next-auth/react";
-
 import localFont from "next/font/local";
+import Link from "next/link";
+
+import { LogInOut } from "@/components";
+import { SessionProvider } from "./components/SessionProvider";
 
 import "./globals.css";
 
@@ -37,6 +35,12 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
         >
+          <nav>
+            <Link href="/">Home</Link>
+            <Link href="/protected" className="ml-5 font-light">
+              Protected
+            </Link>
+          </nav>
           <LogInOut />
           {children}
         </body>
